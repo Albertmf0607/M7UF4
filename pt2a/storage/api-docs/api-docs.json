@@ -1,0 +1,274 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Usuarios",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/M7/UF4/pt2a/public"
+        }
+    ],
+    "paths": {
+        "/api/llibres": {
+            "get": {
+                "tags": [
+                    "llibres"
+                ],
+                "summary": "Veure tots els llibres.",
+                "operationId": "App\\Http\\Controllers\\ApiController::getLlibres",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els llibres."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/autors": {
+            "get": {
+                "tags": [
+                    "autors"
+                ],
+                "summary": "Veure tots els autors.",
+                "operationId": "App\\Http\\Controllers\\ApiController::getAutors",
+                "responses": {
+                    "200": {
+                        "description": "Retorna tots els autors."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/llibre/{id}": {
+            "get": {
+                "tags": [
+                    "llibres"
+                ],
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\ApiController::getLlibre",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id llibre a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Llibre modificat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "llibres"
+                ],
+                "summary": "Actualitza llibre ja existent",
+                "description": "",
+                "operationId": "updateLlibre",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id llibre a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "Titol llibre",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "data_public",
+                        "in": "query",
+                        "description": "Data de publicacio YYYY-mm-dd",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "autor_id",
+                        "in": "query",
+                        "description": "Id autor",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Llibre modificat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "llibres"
+                ],
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\ApiController::eliminarLlibre",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id llibre a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Llibre modificat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/autor/{id}": {
+            "get": {
+                "tags": [
+                    "autors"
+                ],
+                "description": "",
+                "operationId": "App\\Http\\Controllers\\ApiController::getAutor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id llibre a modificar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Llibre modificat"
+                    },
+                    "500": {
+                        "description": "S'ha produit un error"
+                    }
+                }
+            }
+        },
+        "/api/llibre": {
+            "post": {
+                "tags": [
+                    "llibres"
+                ],
+                "summary": "Inserir un nou llibre.",
+                "operationId": "App\\Http\\Controllers\\ApiController::crearLlibre",
+                "parameters": [
+                    {
+                        "name": "titol",
+                        "in": "query",
+                        "description": "titol del llibre",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "data_public",
+                        "in": "query",
+                        "description": "data de publicació del llibre",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "autor_id",
+                        "in": "query",
+                        "description": "id de l'autor del llibre",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el llibre que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        },
+        "/api/autor": {
+            "post": {
+                "tags": [
+                    "autors"
+                ],
+                "summary": "Inserir un nou autors.",
+                "operationId": "App\\Http\\Controllers\\ApiController::crearAutor",
+                "parameters": [
+                    {
+                        "name": "nom",
+                        "in": "query",
+                        "description": "nom del autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cognoms",
+                        "in": "query",
+                        "description": "cognom del autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna el autor que hem inserit."
+                    },
+                    "default": {
+                        "description": "S'ha produit un error."
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
